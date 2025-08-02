@@ -14,28 +14,23 @@ This project contains automated tests for an e-commerce website ([Sauce Demo](ht
 ---
 
 ## 🧪 Test Cases
-| Test Case | Description |
-|-----------|------------|
-|           | Test Case | Description                                                                            |
-| **TC01**  | Login with valid Standard User and verify successful navigation to Inventory page      |
-| **TC02**  | Attempt login with Locked User and verify error message                                |
-| **TC03**  | Attempt login with Problem User and verify UI behavior or broken images                |
-| **TC04**  | Login with Performance Glitch User and verify delayed loading                          |
-| **TC05**  | Add single/multiple products to cart and verify cart count & contents                  |
-| **TC06**  | Remove product from cart and ensure it's no longer listed                              |
-| **TC07**  | Verify cart page displays correct product(s) after adding from inventory               |
-| **TC08**  | Navigate from Cart to Checkout Info page and verify UI                                 |
-| **TC09**  | Leave all checkout info fields empty and verify required field errors                  |
-| **TC10**  | Enter only first name and verify last name required error                              |
-| **TC11**  | Enter first and last name without postal code and verify postal code required error    |
-| **TC12**  | Enter invalid (numeric) name fields and verify system accepts or blocks it             |
-| **TC13**  | Submit valid checkout info and navigate to Overview page                               |
-| **TC14**  | Verify product info and total in Overview page before completing checkout              |
-| **TC15**  | Finish checkout and verify Thank You confirmation message                              |
-| **TC16**  | Navigate back from Checkout Info page and verify it returns to Cart (back button flow) |
-| **TC17**  | Logout from any page and verify redirection to Login page                              |
-| **TC18**  | Checkout flow for error_user — detects form input and order completion bugs  
-
+| Test Case | Description                                                                                     |
+|----------|-------------------------------------------------------------------------------------------------|
+| **TC01** | Test login for multiple users (`standard_user`, `secret_sauce`, expected: )                   |
+| **TC02** | Test login for `locked_out_user` and verify error message                                        |
+| **TC03** | Test login for `problem_user` and verify broken images / UI bugs                                |
+| **TC04** | Test login for `visual_user` and verify standard behavior                                        |
+| **TC05** | Performance test for `performance_glitch_user`                                                  |
+| **TC06** | Verify `error_user` cannot add/remove items correctly                                            |
+| **TC07** | Verify `standard_user` can add and remove all products correctly                                |
+| **TC08** | Validate checkout info with various invalid inputs (empty fields, missing data, numeric input)  |
+| **TC09** | Checkout flow for `error_user` — detects blocked last name field & Finish button bug            |
+| **TC10** | Complete checkout flow with `standard_user` and verify success message                          |
+| **TC11** | Logout from Cart page                                                                           |
+| **TC12** | Logout from Checkout Complete page                                                              |
+| **TC13** | Logout from Checkout Info page                                                                  |
+| **TC14** | Logout from Checkout Overview page                                                              |
+| **TC15** | Logout from Inventory page                                                                      |
 
 Each test case includes: objective, steps, expected results, screenshots, and pass/fail criteria.
 
