@@ -24,24 +24,26 @@ public class ErrorUserCartTest extends BaseTest {
         inventoryPage = new InventoryPage(driver);
     }
 
-    @Test(description = "Test Add and Remove functionality for fixed locators")
+    @Test(description = "Verify error_user cannot add/remove items correctly")
     public void testCartAddRemoveFlow() {
-        InventoryPage inventoryPage = new InventoryPage(driver);
         SoftAssert softAssert = new SoftAssert();
 
-        Allure.step("Clicking all Add to Cart buttons...");
-        List<String> added = inventoryPage.clickAllAddToCartButtons();
-        List<String> removed = inventoryPage.clickAllRemoveButtons();
-
+        Allure.step("Clicking all 'Add to Cart' buttons...");
+        List<String> addedProducts = inventoryPage.clickAllAddToCartButtons();
         saveScreenshotWithStep("After clicking Add to Cart buttons");
-        System.out.println("✅ Products added successfully: " + added.size());
-        Allure.step("Clicking all Remove buttons...");
-        saveScreenshotWithStep("After clicking Remove buttons");
-        System.out.println("✅ Products removed successfully: " + removed.size());
 
-        softAssert.assertEquals(removed.size(), added.size(), "❌ Not all products were added.");
-        softAssert.assertEquals(removed.size(), added.size(), "❌ Not all added products were removed.");
+        System.out.println(" Products added successfully: " + addedProducts.size());
+
+        Allure.step("Clicking all 'Remove' buttons...");
+        List<String> removedProducts = inventoryPage.clickAllRemoveButtons();
+        saveScreenshotWithStep("After clicking Remove buttons");
+
+        System.out.println(" Products removed successfully: " + removedProducts.size());
+
+        softAssert.assertEquals(addedProducts.size(), removedProducts.size(),
+                " Mismatch between added and removed products count");
+
         softAssert.assertAll();
     }
-
 }
+

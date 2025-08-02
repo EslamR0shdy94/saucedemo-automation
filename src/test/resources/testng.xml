@@ -20,6 +20,22 @@
             <class name="Tests.InventoryTest"/>
         </classes>
     </test>
+    <test name="Check Out Flow Test">
+        <classes>
+            <class name="Tests.CheckoutFlowTest"/>
+        </classes>
+    </test>
+    <test name="Logout Test">
+        <classes>
+            <class name="Tests.LogoutTest"/>
+        </classes>
+    </test>
+
+    <test name="Error User Check Out Flow Test">
+        <classes>
+            <class name="Tests.ErrorUserCheckOutFlowTest"/>
+        </classes>
+    </test>
     <listeners>
         <listener class-name="io.qameta.allure.testng.AllureTestNg"/>
     </listeners>

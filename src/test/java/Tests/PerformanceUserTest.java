@@ -1,8 +1,10 @@
 package Tests;
 
+import io.qameta.allure.Allure;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
+import pages.InventoryPage;
 import pages.LoginPage;
 
 import java.time.Duration;
@@ -15,17 +17,37 @@ public class PerformanceUserTest extends BaseTest {
     public void testPerformanceGlitchUserLoginTime() {
         LoginPage loginPage = new LoginPage(driver);
 
-        long start = System.currentTimeMillis();
+        Allure.step(" Measuring login time for performance_glitch_user...");
+        long loginStartTime = System.currentTimeMillis();
+
         loginPage.login("performance_glitch_user", "secret_sauce");
 
         new WebDriverWait(driver, Duration.ofSeconds(10))
                 .until(ExpectedConditions.urlContains("inventory"));
 
-        long end = System.currentTimeMillis();
-        long duration = end - start;
+        long loginEndTime = System.currentTimeMillis();
+        long loginDuration = loginEndTime - loginStartTime;
 
-        saveScreenshotWithStep(" Login finished for performance_glitch_user - duration: " + duration + "ms");
+        saveScreenshotWithStep("📸 After login - duration: " + loginDuration + "ms");
 
-        assertTrue(duration < 5000, "Login took too long: " + duration + " ms");
+        assertTrue(loginDuration < 5000,
+                " Login took too long: " + loginDuration + " ms");
+
+        Allure.step(" Login completed in " + loginDuration + " ms");
+
+        // Additional performance step: Measure inventory page readiness (e.g., wait for product list to be visible)
+        InventoryPage inventoryPage = new InventoryPage(driver);
+
+        long inventoryLoadStart = System.currentTimeMillis();
+        inventoryPage.waitForPageToLoad(); // You need to implement this in InventoryPage if not already
+        long inventoryLoadEnd = System.currentTimeMillis();
+
+        long inventoryLoadDuration = inventoryLoadEnd - inventoryLoadStart;
+        saveScreenshotWithStep("📸 Inventory page fully loaded - duration: " + inventoryLoadDuration + "ms");
+
+        Allure.step(" Inventory page loaded in " + inventoryLoadDuration + " ms");
+
+        assertTrue(inventoryLoadDuration < 3000,
+                " Inventory page load time too long: " + inventoryLoadDuration + " ms");
     }
 }

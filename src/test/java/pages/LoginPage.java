@@ -2,10 +2,6 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
 
 public class LoginPage {
     private WebDriver driver;
@@ -45,21 +41,4 @@ public class LoginPage {
         enterPassword(password);
         clickLogin();
     }
-//    public void loginAndWaitForInventory(String username, String password) {
-//        long startTime = System.currentTimeMillis();
-//
-//        enterUsername(username);
-//        enterPassword(password);
-//        clickLogin();
-//
-//        // Explicit Wait Inventory
-//        new WebDriverWait(driver, Duration.ofSeconds(10))
-//                .until(ExpectedConditions.urlContains("inventory"));
-//
-//        long endTime = System.currentTimeMillis();
-//        long loadTime = endTime - startTime;
-//
-//        System.out.println("Login load time: " + loadTime + " ms");
-//    }
-
 }

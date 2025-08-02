@@ -23,19 +23,19 @@ public class BaseTest {
     public void setUp() {
         ChromeOptions options = new ChromeOptions();
 
-        // ⛔ هنا كان لازم options تجهز قبل ما نستخدمها في new ChromeDriver
+        //  new ChromeDriver
         options.addArguments("--incognito");
         options.addArguments("--disable-blink-features=AutomationControlled");
         options.addArguments("--disable-notifications");
         // options.addArguments("--headless=new"); //  شغّله فقط لو محتاج لو شغال على سيرفر
 
-        driver = new ChromeDriver(options); // ✅ بعد ضبط الخيارات
+        driver = new ChromeDriver(options);
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
         driver.get("https://www.saucedemo.com/");
 
-        // ✅ تأكد إن العنصر جاهز قبل أي حاجة (اختياري but best practice)
+        // تأكد إن العنصر جاهز قبل أي حاجة (اختياري but best practice)
         new WebDriverWait(driver, Duration.ofSeconds(10))
                 .until(ExpectedConditions.presenceOfElementLocated(By.id("user-name")));
     }
@@ -64,8 +64,8 @@ public class BaseTest {
         return message;
     }
 
-    @Attachment(value = "{name}", type = "image/png")
-    public byte[] takeScreenshot(String name) {
-        return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
-    }
+//    @Attachment(value = "{name}", type = "image/png")
+//    public byte[] takeScreenshot(String name) {
+//        return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+//    }
 }
